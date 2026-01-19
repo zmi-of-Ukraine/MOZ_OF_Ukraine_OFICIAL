@@ -73,3 +73,180 @@
       flex-direction: column;
       gap: 30px;
     }
+    .news-item {
+      background: #ffffff;
+      padding: 28px 32px;
+      border-radius: 16px;
+      box-shadow: 0 7px 20px rgba(0,0,0,0.08);
+      border-left: 6px solid #ffeb3b;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .news-item:hover { transform: translateY(-5px); }
+    .news-title { font-size: 1.7em; font-weight: 900; color: #1b5e20; margin-bottom: 8px; }
+    .news-date { font-size: 0.9em; color: #666; margin-bottom: 15px; }
+    .news-tag {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: 700;
+      margin-right: 5px;
+    }
+    .news-text { font-size: 1.1em; color: #444; word-break: break-all; }
+    .news-text a { color: #2e7d32; text-decoration: underline; font-weight: bold; }
+
+    /* Сторінки */
+    #aboutPage, #newsPage {
+      display: none;
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 7px 25px rgba(0,0,0,0.1);
+    }
+    .highlight {
+      background: #2e7d32; color: #ffeb3b;
+      padding: 8px 16px; border-radius: 10px;
+      font-weight: 800; display: inline-block; margin-bottom: 20px;
+    }
+
+    #backToTop {
+      display: none; position: fixed; bottom: 20px; right: 20px;
+      background: #ffeb3b; color: #2e7d32; width: 50px; height: 50px;
+      border-radius: 50%; border: none; cursor: pointer; font-weight: bold;
+    }
+
+    footer { margin-top: 40px; padding: 20px; text-align: center; color: #666; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">МОЗ УКРАЇНИ</div>
+  <nav>
+    <a href="#" id="linkHome" class="active">Головна</a>
+    <a href="#" id="linkAbout">Про нас</a>
+  </nav>
+</header>
+
+<div id="homePage">
+  <input type="text" id="searchInput" placeholder="Пошук новин медицини...">
+  <div id="newsContainer"></div>
+</div>
+
+<div id="aboutPage">
+  <h1>Про установу</h1>
+  <div class="highlight">Міністерство охорони здоров'я України</div>
+  <p>Ми забезпечуємо реалізацію державної політики у сфері охорони здоров’я, управління медичними закладами та контроль якості медичних послуг для кожного громадянина.</p>
+  <p><strong>Головний лікар</strong> — <em>Олександр Янкович</em>.</p>
+  <p><strong>Головний відділення</strong> — <em>Єгор Лисенко</em>.</p>
+</div>
+
+<div id="newsPage"></div>
+
+<button id="backToTop">↑</button>
+
+<footer>
+  <p>© 2026 МОЗ України. Офіційний портал.</p>
+</footer>
+
+<script>
+  // УСІ НОВИНИ В ОДНОМУ МАСИВІ
+  const newsData = [
+    {
+      id: 'news_1',
+      title: "Офіційне призначення: У нас новий головний лікар",
+      date: "19.01.2026",
+      tags: ["Призначення", "Важливо"],
+      text: "Сьогодні офіційно представлено нового головного лікаря установи. Ним став Олександр Янкович. Колектив вітає нового керівника та готується до впровадження нових медичних стандартів."
+    },
+    {
+      id: 'news_2',
+      title: "Запис до лікаря",
+      date: "19.01.2026",
+      tags: ["Записи", "Важливо"],
+      text: "https://forms.gle/UjfVVPRXSwH4k4nY8"
+    },
+    {
+      id: 'news_3',
+      title: "Запис до лікаря: результати",
+      date: "19.01.2026",
+      tags: ["Записи", "Результати", "Важливо"],
+      text: "https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing"
+    }
+  ];
+
+  const newsContainer = document.getElementById('newsContainer');
+  const homePage = document.getElementById('homePage');
+  const aboutPage = document.getElementById('aboutPage');
+  const newsPage = document.getElementById('newsPage');
+
+  // Функція для створення посилань, якщо текст починається на http
+  function formatText(text) {
+    if (text.startsWith('http')) {
+      return `<a href="${text}" target="_blank">${text}</a>`;
+    }
+    return text;
+  }
+
+  function renderNews() {
+    newsContainer.innerHTML = '';
+    newsData.forEach(news => {
+      const newsEl = document.createElement('article');
+      newsEl.className = 'news-item';
+      newsEl.innerHTML = `
+        <h2 class="news-title">${news.title}</h2>
+        <div class="news-date">${news.date}</div>
+        <div style="margin-bottom:10px">${news.tags.map(t => `<span class="news-tag">${t}</span>`).join('')}</div>
+        <p class="news-text">${formatText(news.text)}</p>
+      `;
+      // Перехід на сторінку новини тільки якщо клікнули не по посиланню
+      newsEl.onclick = (e) => {
+        if (e.target.tagName !== 'A') showNewsPage(news);
+      };
+      newsContainer.appendChild(newsEl);
+    });
+  }
+
+  function showNewsPage(news) {
+    homePage.style.display = 'none';
+    aboutPage.style.display = 'none';
+    newsPage.style.display = 'block';
+    newsPage.innerHTML = `
+      <h1>${news.title}</h1>
+      <p class="news-text" style="font-size: 1.2em;">${formatText(news.text)}</p>
+      <br>
+      <button onclick="showHome()" style="background:#2e7d32; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer">Назад</button>
+    `;
+  }
+
+  function showHome() {
+    homePage.style.display = 'block';
+    aboutPage.style.display = 'none';
+    newsPage.style.display = 'none';
+    document.getElementById('linkHome').classList.add('active');
+    document.getElementById('linkAbout').classList.remove('active');
+  }
+
+  function showAbout() {
+    homePage.style.display = 'none';
+    aboutPage.style.display = 'block';
+    newsPage.style.display = 'none';
+    document.getElementById('linkHome').classList.remove('active');
+    document.getElementById('linkAbout').classList.add('active');
+  }
+
+  document.getElementById('linkHome').onclick = (e) => { e.preventDefault(); showHome(); };
+  document.getElementById('linkAbout').onclick = (e) => { e.preventDefault(); showAbout(); };
+
+  window.onscroll = function() {
+    document.getElementById('backToTop').style.display = window.scrollY > 300 ? 'block' : 'none';
+  };
+  document.getElementById('backToTop').onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+
+  renderNews();
+</script>
+
+</body>
+</html>
