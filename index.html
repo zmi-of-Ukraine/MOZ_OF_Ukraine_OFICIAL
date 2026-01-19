@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>МОЗ — Міністерство охорони здоров'я</title>
   <style>
-    /* Скидання і базові стилі */
-    * {
-      box-sizing: border-box;
-    }
+    /* Базові стилі */
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f9fbf9;
@@ -25,7 +23,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #2e7d32; /* Зелений МОЗ */
+      background-color: #2e7d32;
       padding: 18px 25px;
       color: white;
       border-radius: 0 0 14px 14px;
@@ -34,17 +32,12 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      user-select: none;
     }
 
     header .logo {
       font-weight: 900;
       font-size: 1.8em;
-      letter-spacing: 1px;
-      font-family: 'Arial Black', Arial, sans-serif;
-      cursor: default;
-      text-shadow: 0 0 5px rgba(0,0,0,0.2);
-      color: #ffeb3b; /* Жовтий акцент */
+      color: #ffeb3b;
     }
 
     nav a {
@@ -52,62 +45,23 @@
       text-decoration: none;
       margin-left: 28px;
       font-weight: 700;
-      font-size: 1.15em;
       padding: 8px 14px;
       border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
+      transition: 0.3s;
     }
-    nav a:hover {
+    nav a:hover, nav a.active {
       background-color: #ffeb3b;
       color: #2e7d32;
-      box-shadow: 0 0 12px rgba(255, 235, 59, 0.5);
-    }
-    nav a.active {
-      background-color: #ffeb3b;
-      color: #2e7d32;
-      font-weight: 900;
     }
 
     /* Пошук */
     #searchInput {
       width: 100%;
-      padding: 10px 15px;
+      padding: 12px 15px;
       border: 2px solid #2e7d3244;
       border-radius: 8px;
-      font-size: 1em;
+      margin-bottom: 20px;
       outline: none;
-      transition: border-color 0.3s ease;
-      margin-bottom: 20px;
-    }
-    #searchInput:focus {
-      border-color: #2e7d32;
-    }
-
-    /* Фільтр тегів */
-    #tagFilter {
-      margin-bottom: 20px;
-      padding: 10px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .tag-button {
-      background: #2e7d32;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      border: none;
-    }
-    .tag-button.active {
-      background: #ffeb3b;
-      color: #2e7d32;
     }
 
     /* Новини */
@@ -121,85 +75,38 @@
       padding: 28px 32px;
       border-radius: 16px;
       box-shadow: 0 7px 20px rgba(0,0,0,0.08);
-      border-left: 6px solid #ffeb3b; /* Жовта смуга */
+      border-left: 6px solid #ffeb3b;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: 0.3s;
     }
-    .news-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(46, 125, 50, 0.15);
-    }
-    .news-title {
-      font-size: 1.7em;
-      font-weight: 900;
-      margin-bottom: 8px;
-      color: #1b5e20;
-    }
-    .news-date {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 15px;
-    }
+    .news-item:hover { transform: translateY(-5px); }
+    .news-title { font-size: 1.6em; font-weight: 900; color: #1b5e20; margin: 0 0 10px; }
+    .news-date { font-size: 0.9em; color: #666; margin-bottom: 10px; }
     .news-tag {
       background: #e8f5e9;
       color: #2e7d32;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 0.85em;
+      font-size: 0.8em;
       font-weight: 700;
       margin-right: 5px;
     }
-    .news-text {
-      font-size: 1.1em;
-      color: #444;
-    }
+    .news-text { font-size: 1em; color: #444; word-break: break-all; }
 
     /* Сторінка "Про нас" */
-    #aboutPage {
-      display: none;
-      background: white;
-      padding: 35px;
-      border-radius: 18px;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.1);
-    }
-    #aboutPage h1 {
-      color: #2e7d32;
-      border-bottom: 4px solid #ffeb3b;
-      padding-bottom: 10px;
-    }
-    .highlight {
-      background: #2e7d32;
-      color: #ffeb3b;
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-weight: 800;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
-      border-top: 2px solid #2e7d3222;
-      color: #666;
-    }
+    #aboutPage { display: none; background: white; padding: 35px; border-radius: 18px; box-shadow: 0 7px 25px rgba(0,0,0,0.1); }
+    .highlight { background: #2e7d32; color: #ffeb3b; padding: 8px 16px; border-radius: 10px; font-weight: 800; display: inline-block; margin-bottom: 20px; }
 
     #backToTop {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ffeb3b;
-      color: #2e7d32;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none; position: fixed; bottom: 20px; right: 20px;
+      background: #ffeb3b; color: #2e7d32; width: 50px; height: 50px;
+      border-radius: 50%; border: none; cursor: pointer; font-weight: bold;
     }
+
+    footer { margin-top: 40px; padding: 20px; text-align: center; color: #666; }
+    
+    /* Додаємо стиль для посилань у новинах */
+    .news-link { color: #2e7d32; font-weight: bold; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -214,18 +121,14 @@
 
 <div id="homePage">
   <input type="text" id="searchInput" placeholder="Пошук новин медицини...">
-  <div id="tagFilter"></div>
   <div id="newsContainer"></div>
 </div>
 
 <div id="aboutPage">
   <h1>Про установу</h1>
   <div class="highlight">Міністерство охорони здоров'я України</div>
-  <p>Ми забезпечуємо реалізацію державної політики у сфері охорони здоров’я, управління медичними закладами та контроль якості медичних послуг для кожного громадянина.</p>
-  
-  <p><strong>Головний лікар</strong> — <em>Олександр Янкович</em>. Видатний фахівець у галузі медицини з багаторічним досвідом управління лікувальними закладами. Під його керівництвом наша установа впроваджує новітні протоколи лікування та забезпечує високу якість медичної допомоги.</p>
-  
-  <p>Олександр Янкович приділяє особливу увагу модернізації обладнання та підвищенню кваліфікації медичного персоналу. Його головна мета — зробити медицину доступною та ефективною для кожного пацієнта.</p>
+  <p>Ми забезпечуємо реалізацію державної політики у сфері охорони здоров’я та контроль якості медичних послуг.</p>
+  <p><strong>Головний лікар</strong> — <em>Олександр Янкович</em>. <strong>Головний відділення</strong> — <em>Єгор Лисенко</em>.</p>
 </div>
 
 <div id="newsPage" style="display:none; background: white; padding: 30px; border-radius: 15px;"></div>
@@ -233,42 +136,35 @@
 <button id="backToTop">↑</button>
 
 <footer>
-  <p>© 2025 МОЗ України. Офіційний портал.</p>
+  <p>© 2026 МОЗ України. Офіційний портал.</p>
 </footer>
 
 <script>
-  // Дані новин - залишено тільки одну новину за запитом
+  // Об'єднаний масив усіх новин
   const newsData = [
     {
-      id: 'news_new_doctor',
+      id: 'news_1',
       title: "Офіційне призначення: У нас новий головний лікар",
-      date: new Date().toISOString(),
+      date: "19.01.2026",
       tags: ["Призначення", "Важливо"],
       text: "Сьогодні офіційно представлено нового головного лікаря установи. Ним став Олександр Янкович. Колектив вітає нового керівника та готується до впровадження нових медичних стандартів.",
-      media: null
-    }
-  ];
-
-const newsData = [
+      isLink: false
+    },
     {
-      id: 'news_new_doctor',
-      title: "Запис до лакаря",
-      date: new Date().toISOString(),
+      id: 'news_2',
+      title: "Запис до лікаря",
+      date: "19.01.2026",
       tags: ["Записи", "Важливо"],
       text: "https://forms.gle/UjfVVPRXSwH4k4nY8",
-      media: null
-    }
-  ];
-
-
-const newsData = [
+      isLink: true
+    },
     {
-      id: 'news_new_doctor',
-      title: "Запис до лакаря результати",
-      date: new Date().toISOString(),
-      tags: ["Записи", "результати" ,"Важливо"],
+      id: 'news_3',
+      title: "Запис до лікаря: результати",
+      date: "19.01.2026",
+      tags: ["Записи", "Результати", "Важливо"],
       text: "https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing",
-      media: null
+      isLink: true
     }
   ];
 
@@ -276,20 +172,30 @@ const newsData = [
   const homePage = document.getElementById('homePage');
   const aboutPage = document.getElementById('aboutPage');
   const newsPage = document.getElementById('newsPage');
-  const tagFilter = document.getElementById('tagFilter');
 
   function renderNews() {
     newsContainer.innerHTML = '';
     newsData.forEach(news => {
       const newsEl = document.createElement('article');
       newsEl.className = 'news-item';
+      
+      // Перевіряємо, чи є текст посиланням
+      const content = news.isLink 
+        ? `<a href="${news.text}" class="news-link" target="_blank">${news.text}</a>`
+        : news.text;
+
       newsEl.innerHTML = `
         <h2 class="news-title">${news.title}</h2>
-        <div class="news-date">${new Date(news.date).toLocaleDateString('uk-UA')}</div>
+        <div class="news-date">${news.date}</div>
         <div style="margin-bottom:10px">${news.tags.map(t => `<span class="news-tag">${t}</span>`).join('')}</div>
-        <p class="news-text">${news.text}</p>
+        <p class="news-text">${content}</p>
       `;
-      newsEl.onclick = () => showNewsPage(news);
+      
+      newsEl.onclick = (e) => {
+        // Якщо натиснули саме на посилання, не відкриваємо сторінку новини
+        if(e.target.tagName !== 'A') showNewsPage(news);
+      };
+      
       newsContainer.appendChild(newsEl);
     });
   }
@@ -298,9 +204,15 @@ const newsData = [
     homePage.style.display = 'none';
     aboutPage.style.display = 'none';
     newsPage.style.display = 'block';
+    
+    const content = news.isLink 
+        ? `<a href="${news.text}" class="news-link" target="_blank">${news.text}</a>`
+        : news.text;
+
     newsPage.innerHTML = `
       <h1>${news.title}</h1>
-      <p>${news.text}</p>
+      <p class="news-text">${content}</p>
+      <br>
       <button onclick="showHome()" style="background:#2e7d32; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer">Назад</button>
     `;
   }
@@ -329,7 +241,6 @@ const newsData = [
   };
   document.getElementById('backToTop').onclick = () => window.scrollTo({top:0, behavior:'smooth'});
 
-  // Початковий рендер
   renderNews();
 </script>
 
