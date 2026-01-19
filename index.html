@@ -5,357 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>МОЗ України — Офіційний портал</title>
   <style>
-    /* ОСНОВНІ КОЛЬОРИ МОЗ: Зелений та Жовтий */
+    /* СТИЛІСТИКА ЗГІДНО З СКРИНШОТОМ */
     :root {
       --moz-green: #2e7d32;
       --moz-yellow: #ffeb3b;
-      --moz-light: #f1f8e9;
-      --moz-dark: #1b5e20;
+      --moz-bg: #f9fbf9;
+      --white: #ffffff;
     }
 
     * { box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: #f4f7f4;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--moz-bg);
       margin: 0;
-      padding: 0 0 50px 0;
-      line-height: 1.6;
+      padding: 0;
+      color: #333;
     }
 
-    /* ШАПКА САЙТУ */
+    /* ШАПКА ТА НАВІГАЦІЯ */
     header {
-      background: var(--moz-green);
-      color: white;
-      padding: 15px 5%;
+      background-color: var(--moz-green);
+      padding: 15px 10%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .logo-area { font-weight: 900; font-size: 1.5em; color: var(--moz-yellow); }
+    .logo {
+      font-weight: 900;
+      font-size: 2em;
+      color: var(--moz-yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-    nav { display: flex; gap: 15px; }
+    nav { display: flex; gap: 10px; }
     .nav-btn {
-      background: transparent;
-      border: 2px solid transparent;
-      color: white;
-      padding: 8px 15px;
+      padding: 10px 20px;
       border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
       transition: 0.3s;
+      border: none;
+      background: transparent;
+      cursor: pointer;
     }
-    .nav-btn:hover, .nav-btn.active {
-      background: var(--moz-yellow);
-      color: var(--moz-green);
+    .nav-btn.active { background-color: var(--moz-yellow); color: var(--moz-green); }
+    .nav-btn:hover { background-color: rgba(255, 235, 59, 0.2); }
+
+    .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+
+    /* ПОШУК (ЯК НА СКРИНШОТІ) */
+    .search-bar {
+      width: 100%;
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 1em;
+      background: white;
     }
 
-    /* КОНТЕНТ */
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
+    /* КАРТКА НОВИНИ / КОНТЕНТУ */
     .card {
       background: white;
       border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      display: none; /* Сховано за замовчуванням */
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-left: 8px solid var(--moz-yellow);
+      display: none;
     }
-    .card.active { display: block; animation: fadeIn 0.4s; }
+    .card.active { display: block; animation: fadeIn 0.3s; }
 
-    @keyframes fadeIn { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform: translateY(0);} }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
-    h1 { color: var(--moz-green); border-left: 6px solid var(--moz-yellow); padding-left: 15px; margin-top: 0; }
+    .news-title { font-size: 1.8em; color: var(--moz-green); font-weight: 800; margin-bottom: 10px; }
+    .news-date { color: #888; font-size: 0.9em; margin-bottom: 15px; }
+    .tag { background: #e8f5e9; color: var(--moz-green); padding: 5px 12px; border-radius: 5px; font-weight: bold; font-size: 0.85em; margin-right: 5px; }
 
-    /* ГОЛОВНА КНОПКА ЗАПИСУ */
-    .hero-btn {
-      background: var(--moz-yellow);
-      color: var(--moz-green);
+    /* ВЕЛИКА КНОПКА ЗАПИСУ */
+    .main-appointment-btn {
       display: block;
       width: 100%;
+      background: var(--moz-yellow);
+      color: var(--moz-green);
       text-align: center;
-      padding: 30px;
-      font-size: 1.8em;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 15px;
+      font-size: 1.6em;
       font-weight: 900;
       text-decoration: none;
-      border-radius: 15px;
-      border: 4px solid var(--moz-green);
-      margin: 30px 0;
+      border: 3px solid var(--moz-green);
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 6px 15px rgba(46, 125, 50, 0.2);
     }
-    .hero-btn:hover { transform: scale(1.02); background: var(--moz-green); color: white; }
+    .main-appointment-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
     /* ФОРМА ТЕСТУ */
     .form-group { margin-bottom: 20px; }
     label { display: block; font-weight: bold; margin-bottom: 8px; }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      font-size: 1em;
-    }
-    .submit-btn {
-      background: var(--moz-green);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      font-weight: bold;
-      border-radius: 10px;
-      width: 100%;
-      cursor: pointer;
-    }
+    input, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; font-size: 1em; }
+    .btn-submit { background: var(--moz-green); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1em; }
 
-    /* ТАБЛИЦЯ АДМІНА */
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    .admin-table th, .admin-table td {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-    .admin-table th { background: var(--moz-light); color: var(--moz-green); }
-
-    .status-tag {
-      background: #e8f5e9;
-      color: #2e7d32;
-      padding: 4px 8px;
-      border-radius: 5px;
-      font-size: 0.8em;
-      font-weight: bold;
-    }
-
-    footer { text-align: center; margin-top: 50px; color: #888; font-size: 0.9em; }
+    /* АДМІНКА */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background: #f1f8e9; color: var(--moz-green); }
+    .btn-assign { background: var(--moz-green); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-area">МОЗ УКРАЇНИ</div>
+  <div class="logo">МОЗ УКРАЇНИ</div>
   <nav>
-    <button class="nav-btn active" id="nav-home" onclick="nav('home')">Головна</button>
-    <button class="nav-btn" id="nav-about" onclick="nav('about')">Про нас</button>
-    <button class="nav-btn" id="nav-admin" onclick="nav('admin')">Кабінет Адміна 🔐</button>
+    <button class="nav-btn active" id="btn-home" onclick="show('home')">Головна</button>
+    <button class="nav-btn" id="btn-about" onclick="show('about')">Про нас</button>
+    <button class="nav-btn" id="btn-admin" onclick="show('admin')">Адмін-панель</button>
   </nav>
 </header>
 
 <div class="container">
+  <input type="text" class="search-bar" placeholder="Пошук новин медицини...">
 
   <section id="page-home" class="card active">
-    <h1>Останні Новини</h1>
-    <div style="background: #fffde7; padding: 20px; border-radius: 12px; border: 1px solid #ffe082;">
-      <h3 style="margin-top:0;">👨‍⚕️ Нове призначення</h3>
-      <p>Олександр Янкович офіційно очолив установу. Разом із Єгором Лисенком вони впроваджують нову систему онлайн-запису пацієнтів.</p>
+    <div class="news-title">Офіційне призначення: У нас новий головний лікар</div>
+    <div class="news-date">19.01.2026</div>
+    <div style="margin-bottom: 20px;">
+      <span class="tag">Призначення</span>
+      <span class="tag">Важливо</span>
     </div>
-
-    <div class="hero-btn" onclick="nav('appointment')">
-      🏥 ЗАПИСАТИСЯ ДО ЛІКАРЯ<br>
-      <span style="font-size: 0.5em; font-weight: normal;">(Натисніть тут, щоб пройти тест та записатись)</span>
-    </div>
+    <p>Сьогодні офіційно представлено нового головного лікаря установи. Ним став <strong>Олександр Янкович</strong>. Колектив вітає нового керівника та готується до впровадження нових медичних стандартів.</p>
+    
+    <button class="main-appointment-btn" onclick="show('test')">
+      🏥 ЗАПИСАТИСЯ ДО ЛІКАРЯ (Пройти тест)
+    </button>
   </section>
 
   <section id="page-about" class="card">
-    <h1>Про нас</h1>
-    <p>Ми працюємо задля вашого здоров'я за найвищими стандартами.</p>
+    <div class="news-title">Керівництво та структура</div>
+    <p>Міністерство охорони здоров'я працює для забезпечення якісних медичних послуг.</p>
     <ul>
       <li><strong>Головний лікар:</strong> Олександр Янкович</li>
       <li><strong>Головний відділення:</strong> Єгор Лисенко</li>
     </ul>
-    <p>Наша лікарня оснащена найсучаснішим обладнанням для діагностики та лікування серцево-судинних та загальних захворювань.</p>
   </section>
 
-  <section id="page-appointment" class="card">
-    <h1>Анкета пацієнта</h1>
-    <p>Заповніть форму, і ми підберемо вам спеціаліста.</p>
-    
-    <div id="booking-form">
+  <section id="page-test" class="card">
+    <div class="news-title">Анкета для запису на прийом</div>
+    <div id="form-box">
       <div class="form-group">
-        <label>Ваше повне Прізвище та Ім'я:</label>
-        <input type="text" id="p-name" placeholder="Іванов Іван">
+        <label>Ваше ПІБ:</label>
+        <input type="text" id="user-name" placeholder="Введіть ваше ім'я">
       </div>
-      
       <div class="form-group">
-        <label>Що саме вас турбує? (Тест-вибір):</label>
-        <select id="p-symptom">
-          <option value="Плановий огляд">Профілактичний огляд (нічого не болить)</option>
-          <option value="Біль у грудях">Болить серце / грудна клітка</option>
-          <option value="Висока температура">Застуда / Температура</option>
-          <option value="Особисте питання">Питання до головного лікаря</option>
+        <label>Які симптоми ви відчуваєте? (Тест):</label>
+        <select id="user-symptom">
+          <option value="Плановий огляд">Потрібен плановий огляд</option>
+          <option value="Кардіологія">Турбує серце або тиск</option>
+          <option value="Терапія">Застуда або температура</option>
+          <option value="Керівництво">Зустріч з керівництвом відділення</option>
         </select>
       </div>
-
       <div class="form-group">
-        <label>Номер мобільного телефону:</label>
-        <input type="tel" id="p-phone" placeholder="+380 ---------">
+        <label>Телефон для зв'язку:</label>
+        <input type="tel" id="user-phone" placeholder="+380...">
       </div>
-
-      <button class="submit-btn" onclick="processBooking()">ВІДПРАВИТИ ЗАЯВКУ</button>
+      <button class="btn-submit" onclick="saveAppointment()">ВІДПРАВИТИ ЗАЯВКУ</button>
     </div>
-
-    <div id="success-msg" style="display:none; text-align: center;">
-      <h2 style="color: var(--moz-green);">✅ Заявку прийнято!</h2>
-      <p>Адміністратор опрацює ваші дані найближчим часом. Ви можете побачити свій запис у Кабінеті Адміна.</p>
-      <button class="nav-btn" style="color: black;" onclick="nav('home')">Повернутися на головну</button>
+    <div id="success-text" style="display:none; text-align: center; color: var(--moz-green);">
+      <h2>✅ Заявку надіслано!</h2>
+      <p>Ми зв'яжемося з вами протягом години.</p>
     </div>
   </section>
 
   <section id="page-admin" class="card">
-    <h1>Панель Управління</h1>
-    <p>Тут адміністратори (Лисенко Є. та Янкович О.) направляють пацієнтів.</p>
-    
-    <div style="overflow-x: auto;">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>Пацієнт</th>
-            <th>Симптоми</th>
-            <th>Телефон</th>
-            <th>Спеціаліст</th>
-            <th>Дія</th>
-          </tr>
-        </thead>
-        <tbody id="admin-data">
-          </tbody>
-      </table>
-    </div>
-    <p id="empty-note" style="text-align: center; color: #999; margin-top: 20px;">Записів поки що немає.</p>
+    <div class="news-title">Управління записами (Адмін)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Пацієнт</th>
+          <th>Симптом</th>
+          <th>Телефон</th>
+          <th>Направити до:</th>
+          <th>Дія</th>
+        </tr>
+      </thead>
+      <tbody id="admin-table-body">
+        </tbody>
+    </table>
   </section>
-
 </div>
 
-<footer>
-  <p>© 2026 Міністерство охорони здоров'я України. Керівник: Олександр Янкович.</p>
-</footer>
-
 <script>
-  // Назви спеціалістів для вибору
-  const doctors = [
-    "Олександр Янкович (Головний лікар)",
+  // СПИСОК СПЕЦІАЛІСТІВ ДЛЯ АДМІНА
+  const specialists = [
     "Єгор Лисенко (Головний відділення)",
-    "Григоренко М. (Терапевт)",
-    "Сидоренко В. (Кардіолог)"
-  ];
-
-  let appointments = []; // Наша локальна база даних
-
-  // Функція перемикання сторінок
-  function nav(target) {
-    // Якщо йдемо в адмінку — питаємо пароль (для простоти)
-    if(target === 'admin') {
-      let pass = prompt("Введіть пароль для доступу до бази (наприклад, 1234):");
-      if(pass !== "1234") return;
-      renderAdmin();
-    }
-
-    // Ховаємо всі сторінки
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-
-    // Показуємо потрібну
-    document.getElementById('page-' + target).classList.add('active');
-    if(document.getElementById('nav-' + target)) {
-      document.getElementById('nav-' + target).classList.add('active');
-    }
-    window.scrollTo(0,0);
-  }
-
-  // Обробка форми запису
-  function processBooking() {
-    const name = document.getElementById('p-name').value;
-    const symp = document.getElementById('p-symptom').value;
-    const phone = document.getElementById('p-phone').value;
-
-    if(!name || !phone) {
-      alert("Будь ласка, заповніть усі поля!");
-      return;
-    }
-
-    // Додаємо в масив
-    const newEntry = {
-      id: Date.now(),
-      name: name,
-      symp: symp,
-      phone: phone,
-      doctor: "Не призначено"
-    };
-    appointments.push(newEntry);
-
-    // Показуємо успіх
-    document.getElementById('booking-form').style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
-
-    // Скидаємо форму для наступного разу
-    setTimeout(() => {
-      document.getElementById('booking-form').reset();
-      document.getElementById('booking-form').style.display = 'block';
-      document.getElementById('success-msg').style.display = 'none';
-    }, 5000);
-  }
-
-  // Відображення списку в адмінці
-  function renderAdmin() {
-    const tableBody = document.getElementById('admin-data');
-    const emptyNote = document.getElementById('empty-note');
-    tableBody.innerHTML = '';
-
-    if(appointments.length === 0) {
-      emptyNote.style.display = 'block';
-      return;
-    } else {
-      emptyNote.style.display = 'none';
-    }
-
-    appointments.forEach(app => {
-      let docOptions = doctors.map(d => `<option value="${d}">${d}</option>`).join('');
-      
-      const row = `
-        <tr>
-          <td><strong>${app.name}</strong></td>
-          <td>${app.symp}</td>
-          <td>${app.phone}</td>
-          <td>
-            <select id="sel-${app.id}">
-              <option>-- Оберіть лікаря --</option>
-              ${docOptions}
-            </select>
-          </td>
-          <td>
-            <button onclick="assign(${app.id})" style="background:var(--moz-green); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Направити</button>
-          </td>
-        </tr>
-      `;
-      tableBody.innerHTML += row;
-    });
-  }
-
-  // Кнопка призначення лікаря
-  function assign(id) {
-    const selectedDoc = document.getElementById('sel-' + id).value;
-    if(selectedDoc.includes('--')) {
-      alert("Спершу оберіть лікаря!");
-      return;
-    }
-    alert("Пацієнта успішно направлено до: " + selectedDoc);
-    
-    // Видаляємо з черги після направлення (або можна міняти статус)
-    appointments = appointments.filter(a => a.id !== id);
-    renderAdmin();
-  }
-</script>
-
-</body>
-</html>
