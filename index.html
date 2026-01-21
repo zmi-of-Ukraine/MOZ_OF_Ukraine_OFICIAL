@@ -11,17 +11,21 @@
       --moz-bg: #f4f7f4;
       --white: #ffffff;
       --military: #1a237e;
+      --info-blue: #0288d1;
     }
 
     * { box-sizing: border-box; }
+    
     body {
       font-family: 'Segoe UI', sans-serif;
       background: var(--moz-bg);
       margin: 0;
-      padding-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Робить сторінку на весь екран */
     }
 
-    /* МЕНЮ */
+    /* ШАПКА */
     header {
       background-color: var(--moz-green);
       padding: 15px 5%;
@@ -35,7 +39,7 @@
       border-radius: 0 0 15px 15px;
     }
 
-    .logo { font-weight: 900; color: var(--moz-yellow); font-size: 1.3em; }
+    .logo { font-weight: 900; color: var(--moz-yellow); font-size: 1.3em; text-transform: uppercase; }
 
     nav { display: flex; gap: 5px; flex-wrap: wrap; }
     .nav-link {
@@ -50,9 +54,15 @@
     }
     .nav-link.active { background: var(--moz-yellow); color: var(--moz-green); }
 
-    .container { max-width: 900px; margin: 25px auto; padding: 0 20px; }
+    /* ОСНОВНИЙ КОНТЕНТ */
+    .main-content {
+      flex: 1; /* Штовхає футер донизу */
+      max-width: 900px;
+      width: 100%;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
 
-    /* СЕКЦІЇ */
     .section { display: none; }
     .active-section { display: block; animation: fadeIn 0.3s; }
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
@@ -64,13 +74,15 @@
       border-radius: 16px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       margin-bottom: 20px;
-      border-left: 6px solid var(--moz-yellow);
+      border-left: 8px solid var(--moz-yellow);
     }
 
     .news-tag {
       background: #e8f5e9; color: var(--moz-green);
       padding: 3px 8px; border-radius: 5px;
       font-size: 0.7em; font-weight: 800; text-transform: uppercase;
+      margin-bottom: 10px;
+      display: inline-block;
     }
     .tag-important { background: #ffebee; color: #c62828; }
 
@@ -85,13 +97,23 @@
       margin-top: 10px;
     }
 
-    /* ПІДВИЩЕННЯ */
     .step-box {
       border: 1px solid #ddd;
       padding: 15px;
       border-radius: 10px;
       margin-top: 10px;
-      background: #fff;
+      background: #fafafa;
+    }
+
+    /* ФУТЕР - ТЕПЕР ЗАВЖДИ ВНИЗУ ПО ЦЕНТРУ */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #e0e0e0;
+      color: #666;
+      font-size: 0.9em;
+      width: 100%;
+      margin-top: auto; /* Гарантує прилипання до низу */
     }
   </style>
 </head>
@@ -101,48 +123,58 @@
   <div class="logo">МОЗ УКРАЇНИ</div>
   <nav>
     <a class="nav-link active" onclick="tab('home', this)">Головна</a>
+    <a class="nav-link" onclick="tab('info', this)">Інформація</a>
     <a class="nav-link" onclick="tab('cvch', this)">ЦВЦХ-ВМА</a>
     <a class="nav-link" onclick="tab('boss', this)">Керівництво</a>
     <a class="nav-link" onclick="tab('promo', this)">Підвищення</a>
   </nav>
 </header>
 
-<div class="container">
+<div class="main-content">
 
   <div id="tab-home" class="section active-section">
     <div class="card" style="border-left-color: #2196f3;">
       <span class="news-tag">Сервіс</span>
       <h3>Запис до лікаря</h3>
-      <p>Пройдіть тестування для направлення в потрібний кабінет.</p>
-      <a href="https://forms.gle/UjfVVPRXSwH4k4nY8" class="btn">Перейти до запису</a>
+      <p>Пройдіть тестування для отримання направлення.</p>
+      <a href="https://forms.gle/UjfVVPRXSwH4k4nY8" class="btn">Записатися</a>
     </div>
 
     <div class="card" style="border-left-color: #4caf50;">
       <span class="news-tag">Інфо</span>
       <h3>Результати та кабінети</h3>
-      <p>Дізнайтеся, до якого лікаря вас призначено.</p>
-      <a href="https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing" class="btn" style="background: #455a64;">Переглянути таблицю</a>
+      <p>Дізнайтеся результати свого запису.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing" class="btn" style="background: #455a64;">Переглянути</a>
     </div>
 
     <div class="card">
       <span class="news-tag tag-important">Важливо</span>
       <h3>Новий лідер: Олександр Янкович</h3>
-      <p>Призначено нового головного лікаря МОЗ.</p>
+      <p>Офіційне призначення головного лікаря.</p>
+    </div>
+
+    <div class="card">
+      <span class="news-tag tag-important">Важливо,Відео</span>
+      <h3>Система у МОЗ</h3>
+      <p><a href="https://youtu.be/e-QK-WDJ2lA?si=S8oK4jIG9tlaiANF" target="_blank" style="color:red; font-weight:bold;">Переглянути відео-розповідь</a></p>
+    </div>
+  </div>
+
+  <div id="tab-info" class="section">
+    <h2 style="color: var(--info-blue);">Інформаційний портал</h2>
+    <div class="card" style="border-left-color: var(--info-blue);">
+      <span class="news-tag">Система</span>
+      <h3>Вкладка "Інформація" активована</h3>
+      <p>Розділ почав функціонувати для публікації офіційних довідок.</p>
     </div>
   </div>
 
   <div id="tab-cvch" class="section">
     <h2 style="color: var(--military);">ЦВЦХ-ВМА</h2>
     <div class="card" style="border-left-color: var(--military);">
-      <span class="news-tag" style="background: #e8eaf6; color: var(--military);">Новина підрозділу</span>
-      <h3>Початок функціонування підрозділу</h3>
-      <div style="font-size: 0.8em; color: #888; margin-bottom: 10px;">20.01.2026</div>
-      <p>Сьогодні Центр військової та цивільної хірургії (ЦВЦХ-ВМА) офіційно розпочав свою роботу. Підрозділ готовий до прийому пацієнтів та проведення складних операцій.</p>
-    </div>
-    
-    <div class="card" style="border-left-color: var(--military);">
-      <h3>Про підрозділ</h3>
-      <p>Центр спеціалізується на військовій хірургії та підготовці кадрів Військово-медичної академії.</p>
+      <span class="news-tag">Новина</span>
+      <h3>Початок роботи підрозділу</h3>
+      <p>Центр військової та цивільної хірургії офіційно відкрито.</p>
     </div>
   </div>
 
@@ -150,31 +182,25 @@
     <h2>Керівний склад</h2>
     <div class="card">
       <p><strong>Головний лікар:</strong> Олександр Янкович</p>
+      <p><strong>Заступник головного лікаря:</strong> Данило Морріс</p>
       <p><strong>Головний відділення:</strong> Єгор Лисенко</p>
       <hr>
       <p><strong>Начальник підрозділу ЦВЦХ-ВМА:</strong> Єгор Лисенко</p>
-      <p><strong>Заступник начальника:</strong> [ПІБ]</p>
     </div>
   </div>
 
   <div id="tab-promo" class="section">
-    <h2>Система підвищення кваліфікації</h2>
+    <h2>Підвищення кваліфікації</h2>
     <div class="card" style="border-left-color: #ff9800;">
-      <div class="step-box">
-        <strong>Рівні 1 — 3:</strong>
-        <p>Вільна система підвищення за результатами щоденної роботи та активності.</p>
-      </div>
-      <div class="step-box" style="background: #fff3e0; border-color: #ffb74d;">
-        <strong>Рівень 3 і вище:</strong>
-        <p>Підвищення відбувається виключно через **професійне тестування** та перевірку знань.</p>
-      </div>
+      <div class="step-box"><strong>Рівні 1-3:</strong> Активна робота.</div>
+      <div class="step-box"><strong>Рівень 3+:</strong> Складання фахових тестів.</div>
     </div>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2026 МОЗ України — Офіційний портал</p>
+  © 2026 МОЗ України — Офіційний портал
 </footer>
 
 <script>
@@ -183,6 +209,7 @@
     document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active-section');
     btn.classList.add('active');
+    window.scrollTo(0, 0); // Прокрутка вгору при зміні вкладки
   }
 </script>
 
