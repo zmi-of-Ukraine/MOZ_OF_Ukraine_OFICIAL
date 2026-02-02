@@ -84,10 +84,22 @@
       margin-right: 5px;
     }
     
-    /* Стилі префіксів */
     .tag-important { background: #ffebee; color: #c62828; }
     .tag-video { background: #e8f5e9; color: #2e7d32; }
     .tag-default { background: #f1f1f1; color: #555; }
+
+    /* СТИЛІ ДЛЯ СПИСКІВ КЕРІВНИЦТВА */
+    .rank-group { margin-bottom: 25px; }
+    .rank-header { 
+      font-weight: 800; 
+      color: var(--moz-green); 
+      border-bottom: 2px solid var(--moz-yellow);
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+    .staff-list { list-style: none; padding: 0; }
+    .staff-list li { padding: 5px 0; border-bottom: 1px dashed #eee; }
+    .vacant { color: #999; font-style: italic; }
 
     .btn {
       display: inline-block;
@@ -170,17 +182,60 @@
       <span class="news-tag tag-default">Новина</span>
       <h3>Початок роботи підрозділу</h3>
       <p>Центр військової та цивільної хірургії офіційно відкрито.</p>
+      <p><strong>Начальник підрозділу:</strong> Єгор Лисенко</p>
     </div>
   </div>
 
   <div id="tab-boss" class="section">
-    <h2>Керівний склад</h2>
+    <h2>Керівний склад Міністерства</h2>
     <div class="card">
-      <p><strong>Головний лікар:</strong> Олександр Янкович</p>
-      <p><strong>Заступник головного лікаря:</strong> Данило Морріс</p>
-      <p><strong>Головний відділення:</strong> Єгор Лисенко</p>
-      <hr>
-      <p><strong>Начальник підрозділу ЦВЦХ-ВМА:</strong> Єгор Лисенко</p>
+      
+      <div class="rank-group">
+        <div class="rank-header">[12] Головний лікар МОЗ</div>
+        <ul class="staff-list">
+          <li><strong>Олександр Янкович</strong></li>
+        </ul>
+      </div>
+
+      <div class="rank-group">
+        <div class="rank-header">[11] Заступники Головного лікаря МОЗ</div>
+        <ul class="staff-list">
+          <li>Данило Моріс <span style="color:var(--moz-green)">[МОЗ]</span></li>
+          <li>Домініка Юрчишина <span style="color:var(--moz-green)">[МОЗ]</span></li>
+          <li>Надін Айворі</li>
+        </ul>
+      </div>
+
+      <div class="rank-group">
+        <div class="rank-header">[10] Головні відділення МОЗ (ПМВ, ШМД, ЦВЦХ)</div>
+        <ul class="staff-list">
+          <li>Єгор Лисенко</li>
+          <li>Ден Капоне</li>
+          <li>Анастасія Петренкович</li>
+          <li>Кирило Тетеря</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+        </ul>
+      </div>
+
+      <div class="rank-group">
+        <div class="rank-header">[9] Лікарі психіатри МОЗ</div>
+        <ul class="staff-list">
+          <li>Тимур Ланько</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+          <li class="vacant">Вакантно</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
