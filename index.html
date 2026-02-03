@@ -53,7 +53,6 @@
       font-size: 0.82em;
       transition: 0.2s;
     }
-    .nav-link:hover { background: rgba(255,255,255,0.1); }
     .nav-link.active { background: var(--moz-yellow); color: var(--moz-green); }
 
     .main-content {
@@ -88,17 +87,9 @@
     .tag-important { background: #ffebee; color: #c62828; }
     .tag-default { background: #f1f1f1; color: #555; }
 
-    /* Списки персоналу */
-    .rank-group { margin-bottom: 25px; }
-    .rank-header { 
-      font-weight: 800; 
-      color: var(--moz-green); 
-      border-bottom: 2px solid var(--moz-yellow);
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-    }
     .staff-list { list-style: none; padding: 0; }
     .staff-list li { padding: 5px 0; border-bottom: 1px dashed #eee; }
+    .rank-header { font-weight: 800; color: var(--moz-green); border-bottom: 2px solid var(--moz-yellow); margin: 15px 0 10px 0; }
     .vacant { color: #999; font-style: italic; }
 
     .btn {
@@ -112,15 +103,7 @@
       margin-top: 10px;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #e0e0e0;
-      color: #666;
-      font-size: 0.9em;
-      width: 100%;
-      margin-top: auto;
-    }
+    footer { text-align: center; padding: 20px; background: #e0e0e0; color: #666; font-size: 0.9em; margin-top: auto; }
   </style>
 </head>
 <body>
@@ -141,108 +124,93 @@
 
   <div id="tab-home" class="section active-section">
     <div class="card" style="border-left-color: #2196f3;">
-      <span class="news-tag tag-default">Сервіс</span>
+      <span class="news-tag tag-default" style="background: #e3f2fd; color: #1976d2;">Сервіс</span>
       <h3>Запис до лікаря</h3>
       <p>Пройдіть тестування для отримання направлення.</p>
       <a href="https://forms.gle/UjfVVPRXSwH4k4nY8" class="btn">Записатися</a>
     </div>
-        <div class="card" style="border-left-color: #4caf50;">
+
+    <div class="card" style="border-left-color: #4caf50;">
       <span class="news-tag tag-default" style="background: #e8f5e9; color: #2e7d32;">Інфо</span>
       <h3>Результати та кабінети</h3>
       <p>Дізнайтеся результати свого запису.</p>
       <a href="https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing" class="btn" style="background: #455a64;">Переглянути</a>
-        </div>
+    </div>
+
     <div class="card">
-      <span class="news-tag tag-important">Оголошення</span>
-      <h3>Вітаємо Олександра Янковича</h3>
-      <p>Новий головний лікар МОЗ розпочав виконання обов'язків.</p>
+      <span class="news-tag tag-important">Важливо</span>
+      <h3>Олександр Янкович — Головний лікар</h3>
+      <p>Слідкуйте за оновленнями у розділі керівництва.</p>
     </div>
   </div>
 
   <div id="tab-pmv" class="section">
     <h2 style="color: var(--pmv-purple);">ПМВ — Підрозділ медичної варти</h2>
     <div class="card" style="border-left-color: var(--pmv-purple);">
-      <span class="news-tag" style="background: #f3e5f5; color: var(--pmv-purple);">Спецпідрозділ</span>
-      <h3>Охорона та порядок</h3>
-      <p>Забезпечення безпеки медичних закладів та супровід важливих об'єктів.</p>
-      <hr>
-      <p><strong>Відповідальні особи:</strong> Кирило Тетеря, Анастасія Петренкович</p>
+      <p>Забезпечення порядку та охорони медичного персоналу.</p>
+      <p><strong>Відповідальні:</strong> Кирило Тетеря, Анастасія Петренкович</p>
     </div>
   </div>
 
   <div id="tab-shmd" class="section">
     <h2 style="color: var(--shmd-red);">ШМД — Швидка медична допомога</h2>
     <div class="card" style="border-left-color: var(--shmd-red);">
-      <span class="news-tag" style="background: #ffeae; color: var(--shmd-red);">Екстрена допомога</span>
-      <h3>Оперативне реагування</h3>
-      <p>Виїзди на виклики 103, надання першої допомоги на місці подій.</p>
-      <hr>
-      <p><strong>Відповідальні особи:</strong> Ден Капоне, Вакантно</p>
+      <p>Екстрене реагування на виклики громадяни.</p>
+      <p><strong>Відповідальний:</strong> Ден Капоне</p>
     </div>
   </div>
 
   <div id="tab-cvch" class="section">
     <h2 style="color: var(--military);">ЦВЦХ-ВМА</h2>
     <div class="card" style="border-left-color: var(--military);">
-      <span class="news-tag" style="background: #e8eaf6; color: var(--military);">Хірургія</span>
-      <h3>Військово-медична академія</h3>
-      <p>Складні операції та реабілітація бійців.</p>
-      <hr>
-      <p><strong>Начальник підрозділу:</strong> Єгор Лисенко</p>
+      <p>Військова хірургія та складні операції.</p>
+      <p><strong>Керівник:</strong> Єгор Лисенко</p>
     </div>
   </div>
 
   <div id="tab-boss" class="section">
     <h2>Керівний склад</h2>
     <div class="card">
-      <div class="rank-group">
-        <div class="rank-header">[12] Головний лікар МОЗ</div>
-        <ul class="staff-list"><li><strong>Олександр Янкович</strong></li></ul>
-      </div>
+      <div class="rank-header">[12] Головний лікар</div>
+      <ul class="staff-list"><li>Олександр Янкович</li></ul>
+      
+      <div class="rank-header">[11] Заступники Головного лікаря</div>
+      <ul class="staff-list">
+        <li>Данило Моріс [МОЗ]</li>
+        <li>Домініка Юрчишина [МОЗ]</li>
+        <li>Надін Айворі</li>
+      </ul>
 
-      <div class="rank-group">
-        <div class="rank-header">[11] Заступники Головного лікаря</div>
-        <ul class="staff-list">
-          <li>Данило Моріс [МОЗ]</li>
-          <li>Домініка Юрчишина [МОЗ]</li>
-          <li>Надін Айворі</li>
-        </ul>
-      </div>
+      <div class="rank-header">[10] Головні відділення</div>
+      <ul class="staff-list">
+        <li>Єгор Лисенко</li>
+        <li>Ден Капоне</li>
+        <li>Анастасія Петренкович</li>
+        <li>Кирило Тетеря</li>
+        <li class="vacant">Вакантно (4 місця)</li>
+      </ul>
 
-      <div class="rank-group">
-        <div class="rank-header">[10] Головні відділення (ПМВ / ШМД / ЦВЦХ)</div>
-        <ul class="staff-list">
-          <li>Єгор Лисенко (ЦВЦХ)</li>
-          <li>Ден Капоне (ШМД)</li>
-          <li>Анастасія Петренкович (ПМВ)</li>
-          <li>Кирило Тетеря (ПМВ)</li>
-          <li class="vacant">Вакантно</li>
-          <li class="vacant">Вакантно</li>
-        </ul>
-      </div>
-
-      <div class="rank-group">
-        <div class="rank-header">[9] Психіатрія</div>
-        <ul class="staff-list">
-          <li>Тимур Ланько</li>
-          <li class="vacant">Вакантно (ще 9 місць)</li>
-        </ul>
-      </div>
+      <div class="rank-header">[9] Лікарі психіатри</div>
+      <ul class="staff-list">
+        <li>Тимур Ланько</li>
+        <li class="vacant">Вакантно (9 місць)</li>
+      </ul>
     </div>
   </div>
 
   <div id="tab-info" class="section">
-    <h2>Інформаційний портал</h2>
-    <div class="card" style="border-left-color: var(--info-blue);">
-      <p>Офіційні документи та протоколи роботи МОЗ України.</p>
+    <h2>Інформаційний центр</h2>
+    <div class="card" style="border-left-color: #4caf50;">
+      <span class="news-tag tag-default" style="background: #e8f5e9; color: #2e7d32;">База даних</span>
+      <h3>Електронний реєстр записів</h3>
+      <p>Офіційна таблиця з результатами перевірок та кабінетів.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1rV90J5ZXRNG5DFbMR6IsRW1DCvOi2446DPYk8w4nMWY/edit?usp=sharing" class="btn" style="background: #455a64;">Відкрити таблицю</a>
     </div>
   </div>
 
 </div>
 
-<footer>
-  © 2026 МОЗ України — Офіційний портал
-</footer>
+<footer>© 2026 МОЗ України — Офіційний портал</footer>
 
 <script>
   function tab(id, btn) {
